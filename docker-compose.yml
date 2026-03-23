@@ -1,0 +1,42 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongodb
+    # restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: orders_db
+    volumes:
+      - mongo_data:/data/db
+
+  # mongo-express:
+  #   image: mongo-express
+  #   container_name: mongo_express
+  #   # restart: always
+  #   depends_on:
+  #     - mongo
+  #   ports:
+  #     - "8081:8081"
+  #   environment:
+  #     ME_CONFIG_MONGODB_SERVER: mongo
+  #     ME_CONFIG_BASICAUTH: "false"
+  
+  # redis:
+  #   image: redis:7
+  #   container_name: redis
+  #   # restart: always
+  #   ports:
+  #     - "6379:6379"
+  
+  # ngrok:
+  #   image: ngrok/ngrok:latest
+  #   command: tcp mongo:27017
+  #   environment:
+  #     - NGROK_AUTHTOKEN=SEU_TOKEN_AQUI
+  #   ports:
+  #     - "4040:4040" # painel web do ngrok
+
+
+volumes:
+  mongo_data:
